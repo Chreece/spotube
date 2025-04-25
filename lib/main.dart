@@ -51,10 +51,22 @@ import 'package:window_manager/window_manager.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 import 'package:yt_dlp_dart/yt_dlp_dart.dart';
 import 'package:flutter_new_pipe_extractor/flutter_new_pipe_extractor.dart';
+import 'package:audio_service/audio_service.dart';
+import 'package:spotube/services/audio_handler/spotube_audio_handler.dart';
 
 Future<void> main(List<String> rawArgs) async {
   if (rawArgs.contains("web_view_title_bar")) {
     WidgetsFlutterBinding.ensureInitialized();
+
+    await AudioService.init(
+      builder: () => SpotubeAudioHandler(),
+      config: const AudioServiceConfig(
+        androidNotificationChannelId: 'com.krtirtho.spotube.channel.audio',
+        androidNotificationChannelName: 'Spotube Playback',
+        androidNotificationOngoing: true,
+      ),
+    );
+
     if (runWebViewTitleBarWidget(rawArgs)) {
       return;
     }

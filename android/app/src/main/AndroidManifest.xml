@@ -16,8 +16,8 @@
     </intent>
   </queries>
 
-  <application
-    android:name="${applicationName}"
++ <application
++   android:name="oss.krtirtho.spotube.Application"
     android:allowBackup="false"
     android:fullBackupContent="false"
     android:icon="@mipmap/ic_launcher"
